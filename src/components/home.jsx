@@ -1,11 +1,10 @@
 import PostList from "./postCardList";
 import CreatePost from "./createPost";
-const home = () => {
+const home = ({SelectedTab}) => {
   return (
     <>
         <div className="bg-white h-[600px] m-5 rounded-md p-10 overflow-y-scroll">
-            {/* <PostList/> */}
-          <CreatePost/>
+            {SelectedTab === "Home" ? <PostList/> : <CreatePost/>}
         </div>
     </>
   )
