@@ -11,6 +11,8 @@ const postReducerFunc=(currPost, action)=>{
     let postArray = currPost
     if (action.type === "DELETE_POST") {
         postArray = currPost.filter((items)=> items.id !== action.payload.postId)
+    } else if(action.type === "ADD_POST"){
+        postArray = [action.payload,...currPost]
     }
     return postArray; 
 }
@@ -18,8 +20,19 @@ const postReducerFunc=(currPost, action)=>{
 const Post_Context_Provider = ({children})=>{
     const [postList, dispatchPostList] = useReducer(postReducerFunc, DEFAULT_DATA)
 
-    const addPost=()=>{
-        
+    const addPost=(UserID,PostTitle,PostContent,Reactions,Tags)=>{
+        console.log(`${UserID},${PostTitle},${PostContent},${Reactions},${Tags}`);
+        dispatchPostList({
+            type: "ADD_POST",
+            payload: {
+                id: Date.now,
+                title: PostTitle,
+                body: PostContent,
+                reactions: Reactions,
+                userId: UserID,
+                tags: Tags
+            }
+        })
     }
     const deletePost=(postId)=>{
         dispatchPostList({

@@ -6,7 +6,7 @@ const postCard = ({postProp}) => {
   return (
     <>
         <div className="max-w-4xl mx-auto border-2 p-8 rounded-lg relative">
-            <div className="absolute -top-2 -right-2 p-2 bg-red-600 rounded-full w-10 h-10" onClick={()=>deletePost(postProp.id)}>
+            <div className="absolute -top-2 -right-2 p-2 bg-red-500 rounded-full w-10 h-10" onClick={()=>deletePost(postProp.id)}>
               <p className="text-center text-2xl"><MdOutlineDeleteForever /></p>
             </div>
             <p className="text-2xl font-bold mb-4">{postProp.title}</p>
