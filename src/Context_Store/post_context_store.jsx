@@ -8,7 +8,11 @@ export const Post_Context = createContext({
 })
 
 const postReducerFunc=(currPost, action)=>{
-    return currPost; 
+    let postArray = currPost
+    if (action.type === "DELETE_POST") {
+        postArray = currPost.filter((items)=> items.id !== action.payload.postId)
+    }
+    return postArray; 
 }
 
 const Post_Context_Provider = ({children})=>{
@@ -17,8 +21,13 @@ const Post_Context_Provider = ({children})=>{
     const addPost=()=>{
         
     }
-    const deletePost=()=>{
-
+    const deletePost=(postId)=>{
+        dispatchPostList({
+            type: "DELETE_POST",
+            payload: {
+                postId
+            }
+        })
     }
     
     return (
@@ -38,10 +47,10 @@ const DEFAULT_DATA = [{
         userId: "mansoonRider",
         tags: ["Rainy","coolWeather","hotCoffee"] },
     {
-        id: "1",
-        title: "Rainy weather",
-        body: "Rainy weather.....Enjoy this weather by having a hot coffee with a little snacks aside",
+        id: "2",
+        title: "Rainy weather2",
+        body: "Rainy weather.....Enjoy this weather by having a hot coffee with a little snacks aside2",
         reactions: 0,
         userId: "mansoonRider",
-        tags: ["Rainy","coolWeather","hotCoffee"]
+        tags: ["Rainy","coolWeather","hotCoffee2"]
     }]

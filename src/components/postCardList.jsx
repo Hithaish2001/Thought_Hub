@@ -6,7 +6,9 @@ const postCardList = () => {
   const {postList} = useContext(Post_Context)
   return (
     <>
-        {postList.map((item)=>(<PostCard key={item.id} postProp={item}/>))}
+        <div className="space-y-20">
+          {postList.map((item)=>(<PostCard key={item.id} postProp={item}/>))}
+        </div>
     </>
   )
 }
