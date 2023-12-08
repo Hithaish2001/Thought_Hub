@@ -17,9 +17,14 @@ const createPost = () => {
     const PostContent = PostContentElement.current.value;
     const Reactions = ReactionsElement.current.value;
     const Tags = TagsElement.current.value.split(" ");
-
+    
     addPost(UserID,PostTitle,PostContent,Reactions,Tags);
-
+    
+    UserID.current.value = "";
+    PostTitle.current.value = "";
+    PostContent.current.value = "";
+    Reactions.current.value = "";
+    Tags.current.value = "";
   }
 
   return (
