@@ -29,7 +29,7 @@ const Post_Context_Provider = ({children})=>{
         dispatchPostList({
             type: "ADD_POST",
             payload: {
-                id: Date.now,
+                id: Date.now(),
                 title: PostTitle,
                 body: PostContent,
                 reactions: Reactions,

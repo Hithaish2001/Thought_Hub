@@ -20,11 +20,11 @@ const createPost = () => {
     
     addPost(UserID,PostTitle,PostContent,Reactions,Tags);
     
-    UserID.current.value = "";
-    PostTitle.current.value = "";
-    PostContent.current.value = "";
-    Reactions.current.value = "";
-    Tags.current.value = "";
+    UserIdElement.current.value = "";
+    PostTitleElement.current.value = "";
+    PostContentElement.current.value = "";
+    ReactionsElement.current.value = "";
+    TagsElement.current.value = "";
   }
 
   return (
