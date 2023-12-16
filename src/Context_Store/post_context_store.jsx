@@ -1,11 +1,12 @@
 
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const Post_Context = createContext({
     postList : [],
     addPost: ()=>{},
     deletePost: ()=>{},
-    fetchMorePosts: ()=>{}
+    handleFetchButton: ()=>{},
+    loading: false
 })
 
 const postReducerFunc=(currPost, action)=>{
@@ -24,6 +25,7 @@ const postReducerFunc=(currPost, action)=>{
 
 const Post_Context_Provider = ({children})=>{
     const [postList, dispatchPostList] = useReducer(postReducerFunc, [])
+    const [loading, setloading] = useState(false)
 
     const addPost=(post)=>{
         dispatchPostList({
@@ -49,9 +51,19 @@ const Post_Context_Provider = ({children})=>{
 
         })
     }
+
     
+    
+    const handleFetchButton = ()=>{
+        setloading(true)
+        fetch('https://dummyjson.com/posts')
+        .then(res => res.json())
+        .then((postsVal) => {fetchMorePosts(postsVal.posts); setloading(false)});
+      }
+
+
     return (
-        <Post_Context.Provider value={{postList,addPost,deletePost,fetchMorePosts}}>
+        <Post_Context.Provider value={{postList,addPost,deletePost,handleFetchButton,loading}}>
             {children}
         </Post_Context.Provider>
     )

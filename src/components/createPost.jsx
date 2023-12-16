@@ -1,5 +1,6 @@
 import { useContext, useRef } from "react"
 import { Post_Context } from "../Context_Store/post_context_store";
+import { useNavigate } from "react-router-dom";
 
 const createPost = () => {
   const UserIdElement = useRef()
@@ -9,6 +10,8 @@ const createPost = () => {
   const TagsElement = useRef()
 
   const {addPost} = useContext(Post_Context)
+
+  const navigate = useNavigate()
 
   const HandleSubmit=(event)=>{
     event.preventDefault()
@@ -37,7 +40,7 @@ const createPost = () => {
       })
       })
       .then(res => res.json())
-      .then(post => addPost(post))
+      .then((post) => {addPost(post); navigate("/")})
   }
 
   return (

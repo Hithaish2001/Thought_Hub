@@ -1,10 +1,9 @@
-import PostList from "./postCardList";
-import CreatePost from "./createPost";
-const home = ({SelectedTab}) => {
+import {Outlet} from "react-router-dom";
+const home = () => {
   return (
     <>
         <div className="bg-white h-[600px] m-5 rounded-md p-10 overflow-y-scroll">
-            {SelectedTab === "Home" ? <PostList/> : <CreatePost/>}
+            <Outlet/>
         </div>
     </>
   )
