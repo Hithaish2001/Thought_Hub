@@ -18,10 +18,10 @@ const postCardList = () => {
 
   return (
     <>
-        {!loading &&  postList.length===0 && <EmptyMessage handleFetchButton={handleFetchButton}/>}
+        {!loading && postList.length===0 && <EmptyMessage handleFetchButton={handleFetchButton}/>}
         {loading && <LoadingSpinner/>}
         <div className="space-y-20">
-          {postList.map((item)=>(<PostCard key={item.id} postProp={item}/>))}
+          {!loading && postList.map((item)=>(<PostCard key={item.id} postProp={item}/>))}
         </div>
     </>
   )

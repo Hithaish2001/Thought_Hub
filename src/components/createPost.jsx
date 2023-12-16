@@ -18,13 +18,26 @@ const createPost = () => {
     const Reactions = ReactionsElement.current.value;
     const Tags = TagsElement.current.value.split(" ");
     
-    addPost(UserID,PostTitle,PostContent,Reactions,Tags);
     
     UserIdElement.current.value = "";
     PostTitleElement.current.value = "";
     PostContentElement.current.value = "";
     ReactionsElement.current.value = "";
     TagsElement.current.value = "";
+
+    fetch('https://dummyjson.com/posts/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: PostTitle,
+          body: PostContent,
+          reactions: Reactions,
+          userId: UserID,
+          tags: Tags
+      })
+      })
+      .then(res => res.json())
+      .then(post => addPost(post))
   }
 
   return (

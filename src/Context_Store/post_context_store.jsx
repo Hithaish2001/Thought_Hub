@@ -25,17 +25,10 @@ const postReducerFunc=(currPost, action)=>{
 const Post_Context_Provider = ({children})=>{
     const [postList, dispatchPostList] = useReducer(postReducerFunc, [])
 
-    const addPost=(UserID,PostTitle,PostContent,Reactions,Tags)=>{
+    const addPost=(post)=>{
         dispatchPostList({
             type: "ADD_POST",
-            payload: {
-                id: Date.now(),
-                title: PostTitle,
-                body: PostContent,
-                reactions: Reactions,
-                userId: UserID,
-                tags: Tags
-            }
+            payload: post,
         })
     }
     const deletePost=(postId)=>{
